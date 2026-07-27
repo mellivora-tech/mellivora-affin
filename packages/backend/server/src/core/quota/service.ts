@@ -218,9 +218,10 @@ export class QuotaService {
   }
 
   private userMemberLimit(plan: string) {
-    return plan === 'pro' || plan === 'lifetime_pro' || plan === 'selfhost_free'
-      ? 10
-      : 3;
+    if (plan === 'pro' || plan === 'lifetime_pro') {
+      return 100;
+    }
+    return plan === 'selfhost_free' ? 10 : 30;
   }
 
   private planName(plan: string) {
