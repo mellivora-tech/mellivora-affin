@@ -47,12 +47,12 @@ const ALL_CONFIGURABLE_MODULES = Object.keys(CONFIG_DESCRIPTORS).filter(
 
 export const KNOWN_CONFIG_GROUPS = [
   {
-    name: 'Server',
+    name: '服务器',
     module: 'server',
     fields: ['externalUrl', 'name', 'hosts'],
   } as ConfigGroup<'server'>,
   {
-    name: 'Auth',
+    name: '认证',
     module: 'auth',
     fields: [
       'allowSignup',
@@ -60,26 +60,26 @@ export const KNOWN_CONFIG_GROUPS = [
       {
         key: 'newAccountShareActionDelay',
         type: 'Number',
-        desc: 'Minimum account age in seconds before new accounts can invite members or create share links.',
+        desc: '新账户注册后需等待的最短时长（秒），达到后才能邀请成员或创建分享链接。',
       },
       // nested json object
       {
         key: 'passwordRequirements',
         sub: 'min',
         type: 'Number',
-        desc: 'Minimum length requirement of password',
+        desc: '密码最小长度要求',
       },
       {
         key: 'passwordRequirements',
         sub: 'max',
         type: 'Number',
-        desc: 'Maximum length requirement of password',
+        desc: '密码最大长度要求',
       },
     ],
     operations: [AuthSigningKeys],
   } as ConfigGroup<'auth'>,
   {
-    name: 'Notification',
+    name: '通知',
     module: 'mailer',
     fields: [
       'SMTP.name',
@@ -93,12 +93,12 @@ export const KNOWN_CONFIG_GROUPS = [
     operations: [SendTestEmail],
   } as ConfigGroup<'mailer'>,
   {
-    name: 'Storage',
+    name: '存储',
     module: 'storages',
     fields: [
       {
         key: 'blob.storage',
-        desc: 'The storage provider for user uploaded blobs',
+        desc: '用户上传文件的存储提供方',
         sub: 'provider',
         type: 'Enum',
         options: ['fs', 'aws-s3', 'cloudflare-r2'],
@@ -107,17 +107,17 @@ export const KNOWN_CONFIG_GROUPS = [
         key: 'blob.storage',
         sub: 'bucket',
         type: 'String',
-        desc: 'The bucket name for user uploaded blobs storage',
+        desc: '用户上传文件存储使用的 Bucket 名称',
       },
       {
         key: 'blob.storage',
         sub: 'config',
         type: 'JSON',
-        desc: 'The S3 compatible config for the storage provider (endpoint/region/credentials).',
+        desc: '存储提供方的 S3 兼容配置（endpoint/region/credentials）。',
       },
       {
         key: 'avatar.storage',
-        desc: 'The storage provider for user avatars',
+        desc: '用户头像的存储提供方',
         sub: 'provider',
         type: 'Enum',
         options: ['fs', 'aws-s3', 'cloudflare-r2'],
@@ -126,18 +126,18 @@ export const KNOWN_CONFIG_GROUPS = [
         key: 'avatar.storage',
         sub: 'bucket',
         type: 'String',
-        desc: 'The bucket name for user avatars storage',
+        desc: '用户头像存储使用的 Bucket 名称',
       },
       {
         key: 'avatar.storage',
         sub: 'config',
         type: 'JSON',
-        desc: 'The S3 compatible config for the storage provider (endpoint/region/credentials).',
+        desc: '存储提供方的 S3 兼容配置（endpoint/region/credentials）。',
       },
       {
         key: 'avatar.publicPath',
         type: 'String',
-        desc: 'The public path prefix for user avatars(e.g. https://my-bucket.s3.amazonaws.com/)',
+        desc: '用户头像的公开访问路径前缀（例如 https://my-bucket.s3.amazonaws.com/）',
       },
     ],
   } as ConfigGroup<'storages'>,
@@ -152,14 +152,14 @@ export const KNOWN_CONFIG_GROUPS = [
     fields: [
       {
         key: 'enabled',
-        desc: 'Enable AI features. Workspace owners configure provider keys in Workspace Settings → Integrations → AI BYOK.',
+        desc: '启用 AI 功能。工作区所有者可在「工作区设置 → 集成 → AI BYOK」中配置提供方密钥。',
       },
       'byok.enabled',
       'byok.allowedProviders',
       'byok.allowCustomEndpoint',
       {
         key: 'byok.allowPrivateEndpoint',
-        desc: 'Allow workspace owners and admins to connect BYOK providers on private network endpoints. Only enable this for trusted workspaces.',
+        desc: '允许工作区所有者和管理员连接位于私有网络端点的 BYOK 提供方。仅建议对受信任的工作区启用。',
       },
     ],
   } as ConfigGroup<'copilot'>,

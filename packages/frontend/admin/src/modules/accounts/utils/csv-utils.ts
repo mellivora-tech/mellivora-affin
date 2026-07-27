@@ -97,7 +97,7 @@ export const getValidUsersToImport = (users: ParsedUser[]) => {
  * Downloads a CSV template for user import
  */
 export const downloadCsvTemplate = () => {
-  const csvContent = 'Username,Email,Password\n,example@example.com,';
+  const csvContent = '用户名,邮箱,密码\n,example@example.com,';
   downloadCsv(csvContent, 'user_import_template.csv');
 };
 
@@ -106,7 +106,7 @@ export const downloadCsvTemplate = () => {
  */
 export const exportImportResults = (results: ParsedUser[]) => {
   const csvContent = [
-    'Username,Email,Password,Status',
+    '用户名,邮箱,密码,状态',
     ...results.map(
       user =>
         `${user.name || ''},${user.email},${user.password || ''},${user.importStatus}${user.importError ? ` (${user.importError})` : ''}`
@@ -119,7 +119,7 @@ export const exportImportResults = (results: ParsedUser[]) => {
     `import_results_${new Date().toISOString().slice(0, 10)}.csv`
   );
 
-  toast.success(`Exported ${results.length} import results`);
+  toast.success(`已导出 ${results.length} 条导入结果`);
 };
 
 /**
@@ -165,7 +165,7 @@ export const processCSVFile = async (
       .map(row => row.split(','));
 
     if (rows.length < 2) {
-      toast.error('CSV file format is incorrect or empty');
+      toast.error('CSV 文件格式不正确或为空');
       onError();
       return;
     }
@@ -181,7 +181,7 @@ export const processCSVFile = async (
     const usersWithEmail = users.filter(user => user.email);
 
     if (usersWithEmail.length === 0) {
-      toast.error('CSV file contains no valid user data');
+      toast.error('CSV 文件中没有有效的用户数据');
       onError();
       return;
     }
@@ -190,7 +190,7 @@ export const processCSVFile = async (
     const hasValidUsers = validatedUsers.some(user => user.valid !== false);
 
     if (!hasValidUsers) {
-      toast.error('CSV file contains no valid user data');
+      toast.error('CSV 文件中没有有效的用户数据');
       onError();
       return;
     }
@@ -198,7 +198,7 @@ export const processCSVFile = async (
     onSuccess(validatedUsers);
   } catch (error) {
     console.error('Failed to parse CSV file', error);
-    toast.error('Failed to parse CSV file');
+    toast.error('解析 CSV 文件失败');
     onError();
   }
 };

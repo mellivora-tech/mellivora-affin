@@ -242,11 +242,11 @@ describe('DashboardPage', () => {
   test('renders mail delivery analytics controls and summary', () => {
     const { getAllByText, getByText, queryByText } = render(<DashboardPage />);
 
-    expect(getByText('Email Delivery Trend')).toBeTruthy();
+    expect(getByText('邮件投递趋势')).toBeTruthy();
     expect(queryByText('Window Controls')).toBeNull();
-    expect(getByText('Status')).toBeTruthy();
-    expect(getAllByText('24h').length).toBeGreaterThan(0);
-    expect(getByText('Success rate')).toBeTruthy();
+    expect(getByText('状态')).toBeTruthy();
+    expect(getAllByText('24小时').length).toBeGreaterThan(0);
+    expect(getByText('成功率')).toBeTruthy();
     expect(getByText('66.7%')).toBeTruthy();
   });
 
@@ -279,8 +279,8 @@ describe('DashboardPage', () => {
 
     const { getByLabelText, getByText } = render(<DashboardPage />);
 
-    expect(getByText('Top Shared Links')).toBeTruthy();
-    expect(getByLabelText('Top shared links range')).toBeTruthy();
-    expect(getByText('28d')).toBeTruthy();
+    expect(getByText('热门分享链接')).toBeTruthy();
+    expect(getByLabelText('热门分享链接时间范围')).toBeTruthy();
+    expect(getByText('28天')).toBeTruthy();
   });
 });

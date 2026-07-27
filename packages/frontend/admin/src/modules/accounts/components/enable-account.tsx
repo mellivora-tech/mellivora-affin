@@ -17,15 +17,14 @@ export const EnableAccountDialog = ({
     <ConfirmDialog
       open={open}
       onOpenChange={onOpenChange}
-      title="Enable Account"
+      title="启用账户"
       description={
         <>
-          Are you sure you want to enable the account? After enabling the
-          account, the <span className="font-bold">{email}</span> email can be
-          used to log in.
+          确定要启用该账户吗？启用后，邮箱{' '}
+          <span className="font-bold">{email}</span> 即可用于登录。
         </>
       }
-      confirmText="Enable"
+      confirmText="启用"
       confirmButtonVariant="default"
       onConfirm={onConfirm}
       onClose={onClose}
